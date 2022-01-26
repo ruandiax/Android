@@ -3,13 +3,16 @@ package com.example.androidproject
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.media.MediaPlayer
-import android.provider.Settings
+import android.os.Environment.DIRECTORY_DOWNLOADS
+import java.io.File
+
 
 class DownloadVideoAlarm: BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        var mediaPlayer: MediaPlayer = MediaPlayer.create(context, Settings.System.DEFAULT_RINGTONE_URI);
-        mediaPlayer.start();
+        val path = context?.getExternalFilesDir(DIRECTORY_DOWNLOADS);
+        var file = File(path, "propagandamercedes.mp4");
+        file.delete();
     }
+
 
 }
